@@ -18,42 +18,22 @@ export function Login({ onLogin }: LoginProps) {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  // Mock existing employees for login
-  const mockEmployees = [
-    {
-      id: '1',
-      emp_id: 'EMP001',
-      name: 'Alex Johnson',
-      email: 'alex.johnson@company.com',
-      avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2'
-    },
-    {
-      id: '2',
-      emp_id: 'EMP002',
-      name: 'Sarah Chen',
-      email: 'sarah.chen@company.com',
-      avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2'
-    }
-  ];
-
   const handleExistingLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     // Simulate API call for existing employee login
     setTimeout(() => {
-      const employee = mockEmployees.find(emp => emp.emp_id === formData.emp_id);
+      // In real implementation, this would call your Flask API to verify employee
+      // For now, we'll create a mock response
+      const employee = {
+        id: Date.now().toString(),
+        name: 'Employee Name', // This would come from your API
+        email: `${formData.emp_id.toLowerCase()}@company.com`,
+        avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2'
+      };
       
-      if (employee) {
-        onLogin({
-          id: employee.id,
-          name: employee.name,
-          email: employee.email,
-          avatar: employee.avatar
-        });
-      } else {
-        alert('Employee ID not found. Please check your ID or register as a new employee.');
-      }
+      onLogin(employee);
       setIsLoading(false);
     }, 1000);
   };
@@ -292,14 +272,6 @@ export function Login({ onLogin }: LoginProps) {
             <p className="text-xs text-gray-400 text-center mt-2">
               Contact HR if you need assistance
             </p>
-          </div>
-
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm text-blue-600 font-medium mb-2">Demo Employee IDs:</p>
-            <div className="space-y-1 text-xs text-blue-500">
-              <div>EMP001 - Alex Johnson</div>
-              <div>EMP002 - Sarah Chen</div>
-            </div>
           </div>
         </div>
       </div>
