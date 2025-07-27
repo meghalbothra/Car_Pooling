@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Login } from './components/Login';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { RidesList } from './components/RidesList';
@@ -9,6 +10,7 @@ import { Leaderboard } from './components/Leaderboard';
 export type User = {
   id: string;
   name: string;
+  email: string;
   avatar: string;
   level: number;
   points: number;
@@ -34,18 +36,22 @@ export type Ride = {
 
 function App() {
   const [currentView, setCurrentView] = useState<'home' | 'create' | 'profile' | 'leaderboard'>('home');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   
-  const [currentUser] = useState<User>({
-    id: '1',
-    name: 'Alex Johnson',
-    avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
-    level: 5,
-    points: 2450,
-    badges: ['First Ride', 'Eco Warrior', 'Social Butterfly', 'Early Bird'],
-    ridesOffered: 23,
-    ridesTaken: 18,
-    carbonSaved: 156.8
-  });
+  const handleLogin = (userData: { id: string; name: string; email: string; avatar: string }) => {
+    const user: User = {
+      ...userData,
+      level: 5,
+      points: 2450,
+      badges: ['First Ride', 'Eco Warrior', 'Social Butterfly', 'Early Bird'],
+      ridesOffered: 23,
+      ridesTaken: 18,
+      carbonSaved: 156.8
+    };
+    setCurrentUser(user);
+    setIsLoggedIn(true);
+  };
 
   const [rides, setRides] = useState<Ride[]>([
     {
@@ -90,6 +96,8 @@ function App() {
   ]);
 
   const addRide = (ride: Omit<Ride, 'id' | 'driverId' | 'driverName' | 'driverAvatar'>) => {
+    if (!currentUser) return;
+    
     const newRide: Ride = {
       ...ride,
       id: Date.now().toString(),
@@ -100,6 +108,10 @@ function App() {
     setRides([newRide, ...rides]);
     setCurrentView('home');
   };
+
+  if (!isLoggedIn || !currentUser) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-25 via-white to-green-25" style={{background: 'linear-gradient(to bottom right, #f0f9ff, #ffffff, #f0fdf4)'}}>
