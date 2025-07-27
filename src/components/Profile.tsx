@@ -118,6 +118,140 @@ export function Profile({ user }: ProfileProps) {
       <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
         <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center space-x-2">
           <Award className="h-5 w-5" />
+          <span>Redeem Points</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-blue-50 p-2 rounded-lg">
+                <Car className="h-5 w-5 text-blue-400" />
+              </div>
+              <span className="text-sm font-medium text-blue-400">500 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Free Gas Voucher</h3>
+            <p className="text-sm text-gray-600 mb-3">$10 gas station voucher</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 500 
+                  ? 'bg-blue-400 text-white hover:bg-blue-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 500}
+            >
+              {user.points >= 500 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-green-50 p-2 rounded-lg">
+                <Leaf className="h-5 w-5 text-green-400" />
+              </div>
+              <span className="text-sm font-medium text-green-400">300 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Coffee Reward</h3>
+            <p className="text-sm text-gray-600 mb-3">Free coffee at partner cafes</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 300 
+                  ? 'bg-green-400 text-white hover:bg-green-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 300}
+            >
+              {user.points >= 300 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-purple-50 p-2 rounded-lg">
+                <Trophy className="h-5 w-5 text-purple-400" />
+              </div>
+              <span className="text-sm font-medium text-purple-400">1000 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Premium Badge</h3>
+            <p className="text-sm text-gray-600 mb-3">Exclusive premium member badge</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 1000 
+                  ? 'bg-purple-400 text-white hover:bg-purple-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 1000}
+            >
+              {user.points >= 1000 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-yellow-50 p-2 rounded-lg">
+                <Star className="h-5 w-5 text-yellow-400" />
+              </div>
+              <span className="text-sm font-medium text-yellow-400">750 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Parking Discount</h3>
+            <p className="text-sm text-gray-600 mb-3">50% off parking at partner lots</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 750 
+                  ? 'bg-yellow-400 text-white hover:bg-yellow-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 750}
+            >
+              {user.points >= 750 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-emerald-50 p-2 rounded-lg">
+                <Users className="h-5 w-5 text-emerald-400" />
+              </div>
+              <span className="text-sm font-medium text-emerald-400">200 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">Priority Matching</h3>
+            <p className="text-sm text-gray-600 mb-3">Get matched with rides first</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 200 
+                  ? 'bg-emerald-400 text-white hover:bg-emerald-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 200}
+            >
+              {user.points >= 200 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="bg-red-50 p-2 rounded-lg">
+                <Award className="h-5 w-5 text-red-400" />
+              </div>
+              <span className="text-sm font-medium text-red-400">1500 pts</span>
+            </div>
+            <h3 className="font-semibold text-gray-900 mb-2">VIP Status</h3>
+            <p className="text-sm text-gray-600 mb-3">Unlock VIP features for 30 days</p>
+            <button 
+              className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                user.points >= 1500 
+                  ? 'bg-red-400 text-white hover:bg-red-500' 
+                  : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+              disabled={user.points < 1500}
+            >
+              {user.points >= 1500 ? 'Redeem' : 'Need more points'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center space-x-2">
+          <Award className="h-5 w-5" />
           <span>Achievements</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
